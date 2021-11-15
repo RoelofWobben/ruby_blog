@@ -1,0 +1,127 @@
+<!-- ##### Single Blog Area Start ##### -->
+<div class="single-blog-wrapper section-padding-0-100">
+
+    <!-- Single Blog Area  -->
+    <div class="single-blog-area blog-style-2 mb-50">
+        <div class="single-blog-thumbnail">
+            <%= image_tag("b5.jpg") %>
+            <div class="post-tag-content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="post-date">
+                                <a href="#">12 <span>march</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <!-- ##### Post Content Area ##### -->
+            <div class="col-12 col-lg-9">
+                <!-- Single Blog Area  -->
+                <div class="single-blog-area blog-style-2 mb-50">
+                    <!-- Blog Content -->
+                    <div class="single-blog-content">
+                        <div class="line"></div>
+                        <a href="#" class="post-tag">Lifestyle</a>
+                        <h4><a href="#" class="post-headline mb-0"> <%= @article.title %></a></h4>
+                        <div class="post-meta mb-50">
+                            <p>By <a href="#">john doe</a></p>
+                            <p>3 comments</p>
+                        </div>
+                           <p> <%= @article.body %>.</p>
+
+                        </div>
+                        <div>
+                          <%= link_to edit_article_path(@article)  do %>
+                             <i class="far fa-edit"></i>
+                           <% end %>
+                           <%= link_to article_path(@article), method: :delete,  data: { confirm: "Are you sure?" } do %>
+                             <i class="far fa-trash-alt"></i>
+                            <% end %>
+                    
+                    </div>
+
+                </div>
+
+                <!-- About Author -->
+                <div class="blog-post-author mt-100 d-flex">
+                    <div class="author-thumbnail">
+                        <%= image_tag("b8.jpg") %>
+                    </div>
+                    <div class="author-info">
+                        <div class="line"></div>
+                        <span class="author-role">Author</span>
+                        <h4><a href="#" class="author-name">John Doe</a></h4>
+                        <p>Curabitur venenatis efficitur lorem sed tempor. Integer aliquet tempor cursus. Nullam vestibulum convallis risus vel condimentum. Nullam auctor lorem in libero luctus, vel volutpat quam tincidunt. Nullam vestibulum convallis risus vel condimentum. Nullam auctor lorem in libero.</p>
+                    </div>
+                    
+                </div>
+                <!-- Comment Area Start -->
+                    <div class="comment_area clearfix mt-70">
+                        <h5 class="title">Comments</h5>
+
+                        <ol>
+                            <% @article.comments.each do |comment| %>
+                            <!-- Single Comment Area -->
+                              <li class="single_comment_area">
+                                <!-- Comment Content -->
+                                <div class="comment-content d-flex">
+                                    <!-- Comment Author -->
+                                    <div class="comment-author">
+                                        <%= image_tag("b8.jpg") %>
+                                    </div>
+                                    <!-- Comment Meta -->
+                                    <div class="comment-meta">
+                                        <a href="#" class="post-date">March 12</a>
+                                        <p><a href="#" class="post-author"> <%= comment.commenter %></a></p>
+                                        <p><%= comment.body %></p>
+                                    </div>
+                                </div>
+                                <%= link_to [comment.article, comment], method: :delete,  data: { confirm: "Are you sure?" } do %>
+                             <i class="far fa-trash-alt"></i>
+                            <% end %>
+                            </li> 
+                           <% end %>    
+                        </ol>
+                    </div>
+
+                    <div class="post-a-comment-area mt-70">
+                        <h5>Leave a reply</h5>
+                        <!-- Reply Form -->
+                        <%= form_with model: [ @article, @article.comments.build ] do |form| %>
+                            <div class="row">
+                                <div class="col-12 col-md-12">
+                                    <div class="group">
+                                        <%= form.text_field :commenter %>
+                                        <span class="highlight"></span>
+                                        <span class="bar"></span>
+                                        <%= form.label :commenter %><br>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="group">
+                                        <%= form.text_area :body %>
+                                        <span class="highlight"></span>
+                                        <span class="bar"></span>
+                                        <%= form.label :body %><br>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <%= form.submit "Submit", :class => "btn original-btn" %>
+                                </div>
+                            </div>
+                        <% end %>
+                    </div>
+
+           
+                
+        
+            
+        
+      
